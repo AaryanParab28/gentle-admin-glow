@@ -49,7 +49,7 @@ export function AppSidebar() {
   ];
 
   return (
-    <Sidebar defaultCollapsed={isMobile} className="border-r">
+    <Sidebar className="border-r">
       <SidebarHeader className="h-[60px] px-4 flex items-center">
         <div className="flex-1 flex items-center gap-2">
           <div className="h-8 w-8 rounded-md bg-intercom-purple flex items-center justify-center text-white font-bold">
