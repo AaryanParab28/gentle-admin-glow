@@ -1,39 +1,57 @@
-# Welcome to your Lovable project
+# 🌟 Gentle Admin Glow – BeyondChats Frontend Assignment
 
-## Project info
+Welcome to **Gentle Admin Glow**, a sleek, intuitive admin dashboard built as a submission for the **BeyondChats Paid Internship Frontend Assignment**. The UI is inspired by Intercom and designed with a strong focus on UX, responsiveness, and clean design aesthetics.
 
-**URL**: https://lovable.dev/projects/e7239189-3226-40a7-b264-01ad7926d927
+> 💡 Built using [Lovable](https://lovable.so), with custom layout, styling, and interaction improvements. Code is exportable and editable in React/TypeScript.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚀 Live Demo
 
-**Use Lovable**
+🔗 **Preview the App**: [https://preview--gentle-admin-glow.lovable.app/](https://preview--gentle-admin-glow.lovable.app/)  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e7239189-3226-40a7-b264-01ad7926d927) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📋 Assignment Brief
 
-**Use your preferred IDE**
+Replicate the UI and functionality showcased in the [Intercom demo video](https://drive.google.com/file/d/1WVvh4VmKJQ6jisIbzfutVmmeZj7IuD4c/view?usp=sharing), focusing on:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- UI/UX design
+- Desktop & mobile responsiveness
+- Smooth transitions & animations
+- Intuitive layout
+- Code readability
+- A little "WOW" ✨
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
+
+## 🧰 Tech Stack
+
+- ⚛️ **React (via Lovable)**
+- 💨 **Tailwind CSS**
+- 🧩 **shadcn/ui**
+- ⚡ **Vite**
+- 🟦 **TypeScript**
+
+---
+
+## 📦 How to Run Locally
 
 Follow these steps:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+git clone https://github.com/AaryanParab28/gentle-admin-glow.git
 
 # Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+cd gentle-admin-glow
 
 # Step 3: Install the necessary dependencies.
 npm i
 
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
+
 ```
 
 **Edit a file directly in GitHub**
@@ -71,3 +89,8 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## 🙋‍♂️ Contact
+
+**Aaryan Parab**  
+📧 parabaaryan2854@gmail.com  
