@@ -1,0 +1,186 @@
+
+import React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ArrowRight, Send, Paperclip, SmilePlus } from "lucide-react";
+
+interface MessageProps {
+  content: string;
+  sender: "user" | "agent" | "ai";
+  time?: string;
+  avatar?: string;
+  initials?: string;
+}
+
+function Message({ content, sender, time = "1min", avatar, initials }: MessageProps) {
+  const isUser = sender === "user";
+  const isAI = sender === "ai";
+  
+  return (
+    <div className={cn(
+      "flex gap-3 mb-4",
+      isUser && "flex-row-reverse"
+    )}>
+      {!isAI && (
+        <Avatar className="h-8 w-8">
+          <AvatarImage src={avatar} />
+          <AvatarFallback>{initials}</AvatarFallback>
+        </Avatar>
+      )}
+      
+      <div className={cn(
+        "max-w-[80%]",
+        isUser ? "user-message" : isAI ? "ai-message" : "bg-white border p-3 rounded-lg text-sm"
+      )}>
+        <p>{content}</p>
+      </div>
+    </div>
+  );
+}
+
+interface AISuggestionProps {
+  content: string;
+  onClick: () => void;
+}
+
+function AISuggestion({ content, onClick }: AISuggestionProps) {
+  return (
+    <div 
+      className="ai-suggestion flex items-center gap-2 cursor-pointer hover:bg-intercom-purple-light/70 transition-colors mb-2"
+      onClick={onClick}
+    >
+      <p className="flex-1">{content}</p>
+      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 rounded-full">
+        <ArrowRight size={14} />
+      </Button>
+    </div>
+  );
+}
+
+export function ConversationPanel() {
+  const messages = [
+    {
+      content: "I bought a product from your store in November as a Christmas gift for a member of my family. However, it turns out they have something very similar already. I was hoping you'd be able to refund me, as it is un-opened.",
+      sender: "user" as const,
+      avatar: "",
+      initials: "LE",
+    },
+    {
+      content: "Let me just look into this for you, Luis.",
+      sender: "agent" as const,
+      avatar: "",
+      initials: "JD",
+    }
+  ];
+  
+  const suggestions = [
+    "I can definitely help with processing your refund. Our return policy allows for unopened items to be returned within 90 days of purchase.",
+    "I'll need to check a few details about your order. Could you please provide your order number?",
+    "We typically offer refunds for unopened items. Let me review your order details and I'll get back to you shortly."
+  ];
+
+  return (
+    <div className="h-full flex flex-col">
+      <div className="p-4 border-b flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <Avatar>
+            <AvatarImage src="" />
+            <AvatarFallback>LE</AvatarFallback>
+          </Avatar>
+          <div>
+            <h2 className="font-medium">Luis Easton</h2>
+            <p className="text-xs text-muted-foreground">Github • 2min</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm">Close</Button>
+        </div>
+      </div>
+      
+      <Tabs defaultValue="conversation" className="flex-1 flex flex-col">
+        <div className="border-b px-2">
+          <TabsList className="bg-transparent">
+            <TabsTrigger value="conversation" className="data-[state=active]:text-intercom-purple data-[state=active]:border-intercom-purple data-[state=active]:border-b-2 rounded-none">
+              AI Copilot
+            </TabsTrigger>
+            <TabsTrigger value="details" className="data-[state=active]:text-intercom-purple data-[state=active]:border-intercom-purple data-[state=active]:border-b-2 rounded-none">
+              Details
+            </TabsTrigger>
+          </TabsList>
+        </div>
+        
+        <TabsContent value="conversation" className="flex-1 flex flex-col p-0 m-0 overflow-hidden">
+          <div className="flex-1 overflow-auto p-4">
+            {messages.map((message, index) => (
+              <Message key={index} {...message} />
+            ))}
+          </div>
+          
+          <div className="p-4 bg-gray-50 border-t">
+            <div className="mb-4">
+              <p className="text-sm font-medium mb-2 text-intercom-purple flex items-center gap-1">
+                <span className="h-2 w-2 rounded-full bg-intercom-purple" />
+                AI Suggested Responses
+              </p>
+              {suggestions.map((suggestion, index) => (
+                <AISuggestion key={index} content={suggestion} onClick={() => {}} />
+              ))}
+            </div>
+            
+            <div className="flex items-end gap-2">
+              <div className="flex-1 bg-white rounded-lg border overflow-hidden flex items-center">
+                <Input 
+                  placeholder="Type your reply..." 
+                  className="border-0 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 px-3 py-2 h-auto" 
+                />
+                <div className="flex items-center gap-1 pr-2">
+                  <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                    <SmilePlus size={18} />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                    <Paperclip size={18} />
+                  </Button>
+                </div>
+              </div>
+              <Button size="icon" className="rounded-full h-10 w-10 bg-intercom-purple hover:bg-intercom-purple-dark">
+                <Send size={16} />
+              </Button>
+            </div>
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="details" className="p-4 m-0">
+          <div className="space-y-4">
+            <div className="border rounded-lg p-4">
+              <h3 className="font-medium mb-2">Customer Info</h3>
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <span className="text-muted-foreground">Email:</span>
+                <span>luis@github.com</span>
+                <span className="text-muted-foreground">Company:</span>
+                <span>Github</span>
+                <span className="text-muted-foreground">First seen:</span>
+                <span>Nov 12, 2023</span>
+              </div>
+            </div>
+            
+            <div className="border rounded-lg p-4">
+              <h3 className="font-medium mb-2">Conversation Info</h3>
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <span className="text-muted-foreground">Started:</span>
+                <span>Today at 11:45 AM</span>
+                <span className="text-muted-foreground">Priority:</span>
+                <span className="flex items-center gap-1">
+                  <span className="h-2 w-2 rounded-full bg-yellow-500"></span>
+                  Medium
+                </span>
+              </div>
+            </div>
+          </div>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+}

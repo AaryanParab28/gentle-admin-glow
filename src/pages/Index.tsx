@@ -1,13 +1,23 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { AppLayout } from "@/components/AppLayout";
+import { ConversationList } from "@/components/ConversationList";
+import { ConversationPanel } from "@/components/ConversationPanel";
+import { AICopilotPanel } from "@/components/AICopilotPanel";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
+  const isMobile = useIsMobile();
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <AppLayout>
+      <div className="grid h-full" style={{ 
+        gridTemplateColumns: isMobile ? "1fr" : "320px 1fr 320px" 
+      }}>
+        <ConversationList />
+        <ConversationPanel />
+        {!isMobile && <AICopilotPanel />}
       </div>
-    </div>
+    </AppLayout>
   );
 };
 
