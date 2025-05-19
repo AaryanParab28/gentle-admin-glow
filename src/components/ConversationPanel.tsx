@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -91,17 +92,11 @@ function AIToolPopover({ isOpen, setIsOpen, selectedText }: AIToolPopoverProps) 
 export function ConversationPanel() {
   const [messages, setMessages] = useState<MessageProps[]>([
     {
-      content: "I bought a product from your store in November as a Christmas gift for a member of my family. However, it turns out they have something very similar already. I was hoping you'd be able to refund me, as it is un-opened.",
+      content: "Hello, I'm having trouble with my order. I ordered a laptop last week but it hasn't been shipped yet. Can you help me?",
       sender: "user" as const,
       avatar: "",
       initials: "LE",
     },
-    {
-      content: "Let me just look into this for you, Luis.",
-      sender: "agent" as const,
-      avatar: "",
-      initials: "JD",
-    }
   ]);
   
   const [inputValue, setInputValue] = useState("");
@@ -110,9 +105,9 @@ export function ConversationPanel() {
   const [aiToolsPosition, setAIToolsPosition] = useState({ x: 0, y: 0 });
   
   const suggestions = [
-    "I can definitely help with processing your refund. Our return policy allows for unopened items to be returned within 60 days of purchase.",
-    "I'll need to check a few details about your order. Could you please provide your order number?",
-    "We typically offer refunds for unopened items. Let me review your order details and I'll get back to you shortly."
+    "I apologize for the delay with your order. I'd be happy to look into this for you. Could you please provide your order number?",
+    "I understand your concern about the shipping delay. Let me check the status of your order right away.",
+    "Thank you for reaching out about your laptop order. I can see there's been a delay in shipping. Let me investigate what's happening."
   ];
   
   const conversationRef = useRef<HTMLDivElement>(null);
