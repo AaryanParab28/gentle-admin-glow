@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -171,7 +170,7 @@ export function ConversationPanel() {
       <div className="p-4 border-b flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Avatar>
-            <AvatImage src="" />
+            <AvatarImage src="" />
             <AvatarFallback>LE</AvatarFallback>
           </Avatar>
           <div>
